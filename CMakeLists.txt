@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(template LANGUAGES CXX)
+project(DSA LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -21,13 +21,13 @@ find_package(fmt REQUIRED)
 
 SET(PACKAGES fmt::fmt)
 
-add_executable(template ${MAIN} ${HEADERS})
-add_executable(template_tests ${TESTS} ${HEADERS})
-add_executable(template_debug ${MAIN} ${HEADERS})
+add_executable(DSA ${MAIN} ${HEADERS})
+add_executable(DSA_tests ${TESTS} ${HEADERS})
+add_executable(DSA_debug ${MAIN} ${HEADERS})
 
-SET(RELEASE_TARGETS template)
-SET(TEST_TARGETS template_tests)
-SET(DEBUG_TARGETS template_debug)
+SET(RELEASE_TARGETS DSA)
+SET(TEST_TARGETS DSA_tests)
+SET(DEBUG_TARGETS DSA_debug)
 
 foreach (target ${RELEASE_TARGETS})
     target_compile_options(${target} PRIVATE ${RELEASE_FLAGS})
@@ -43,4 +43,4 @@ foreach (target ${RELEASE_TARGETS} ${TEST_TARGETS} ${DEBUG_TARGETS})
 endforeach()
 
 # Gtest
-target_link_libraries(template_tests PRIVATE gtest::gtest)
+target_link_libraries(DSA_tests PRIVATE gtest::gtest)

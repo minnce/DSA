@@ -1,2 +1,3 @@
-# template
-My C++ repo template. Header Only, CMake, Conan, Makefile.
+# DSA
+
+Custom implementations of a good chunk of DSA for personal enjoyment

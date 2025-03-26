@@ -9,7 +9,7 @@ build: install
 
 .PHONY: test
 test: build
-	cd build && ./template_tests
+	cd build && ./DSA_tests
 
 .PHONY: lint-check
 lint-check:
