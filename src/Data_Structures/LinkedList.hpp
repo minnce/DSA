@@ -6,13 +6,6 @@ namespace dataStructures
 template <typename T> class LinkedList
 {
   public:
-    struct Node
-    {
-        T value;
-        Node *next;
-        Node *prev;
-    };
-
     LinkedList()
     {
         head->next = tail;
@@ -40,6 +33,13 @@ template <typename T> class LinkedList
     }
 
   private:
+    struct Node
+    {
+        T value;
+        Node *next;
+        Node *prev;
+    };
+
     Node *head;
     Node *tail;
 };
