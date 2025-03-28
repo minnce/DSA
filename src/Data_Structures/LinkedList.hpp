@@ -42,10 +42,9 @@ template <typename T> class LinkedList
         std::shared_ptr<Node> next;
         std::weak_ptr<Node> prev;
 
-        Node(const T& val) {
-            value = val;
-        }
+        Node(const T &val) { value = val; }
     };
+
     std::shared_ptr<Node> head;
     std::shared_ptr<Node> tail;
 };
