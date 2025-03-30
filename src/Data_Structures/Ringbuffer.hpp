@@ -13,9 +13,17 @@ class Ringbuffer
         buffer = new int[initSize];
         head = 0;
         tail = 0;
+        sz = initSize;
     }
 
-    unsigned int add_item(unsigned int item) {}
+    ~Ringbuffer() { delete[] buffer; }
+
+    void add_item(unsigned int item)
+    {
+        buffer[head] = item;
+        head = (head + 1) % sz;
+        sz++;
+    }
 
     std::optional<unsigned int> get_item()
     {
@@ -24,15 +32,17 @@ class Ringbuffer
             std::cout << "No items in ringbuffer\n";
             return std::nullopt;
         }
-        else
-        {
-        }
+        unsigned int toRet = buffer[tail];
+        tail = (tail + 1) % sz;
+        sz--;
+        return toRet;
     }
 
   private:
     unsigned int head;
     unsigned int tail;
     int *buffer;
+    unsigned int sz;
 
     void resize() {}
 };
