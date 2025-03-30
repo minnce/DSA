@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <memory>
+#include <vector>
 
 namespace dataStructures
 {
@@ -33,6 +35,18 @@ template <typename T> class LinkedList
             printer = printer->next;
         }
         std::cout << "print done!\n";
+    }
+
+    std::vector<T> convert_to_vector()
+    {
+        std::vector<T> convertedList;
+        auto printer = head->next;
+        while (printer != tail)
+        {
+            convertedList.push_back(printer->value);
+            printer = printer->next;
+        }
+        return convertedList;
     }
 
   private:
