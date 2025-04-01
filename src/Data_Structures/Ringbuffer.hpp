@@ -1,29 +1,27 @@
 #pragma once
-#include <bits/stdc++.h>
 #include <iostream>
+#include <memory>
+#include <optional>
 #include <vector>
 
 namespace dataStructures
 {
-class Ringbuffer
+template <typename T> class Ringbuffer
 {
   public:
     Ringbuffer(unsigned int initSize)
     {
-        buffer = new int[initSize];
+        buffer = std::make_unique<T[]>(initSize);
         head = 0;
         tail = 0;
         maxSize = initSize;
         currSize = 0;
     }
 
-    ~Ringbuffer() { delete[] buffer; }
-
-    void add_item(unsigned int item)
+    void add_item(T item)
     {
         if (currSize == maxSize)
         {
-            std::cout << "Resizing\n";
             resize();
         }
         buffer[head] = item;
@@ -31,13 +29,13 @@ class Ringbuffer
         currSize++;
     }
 
-    std::optional<unsigned int> get_item()
+    std::optional<T> get_item()
     {
         if (currSize == 0)
         {
             return std::nullopt;
         }
-        int toRet = buffer[tail];
+        T toRet = buffer[tail];
         tail = (tail + 1) % maxSize;
         currSize--;
         return toRet;
@@ -45,9 +43,11 @@ class Ringbuffer
 
     void dump_buffer()
     {
-        for (int i = 0; i < maxSize; i++)
+        int dumpTail = tail;
+        for (int i = 0; i < currSize; i++)
         {
-            std::cout << buffer[i] << " ";
+            std::cout << buffer[dumpTail] << " ";
+            dumpTail = (dumpTail + 1) % maxSize;
         }
         std::cout << "\n";
     }
@@ -55,20 +55,19 @@ class Ringbuffer
   private:
     unsigned int head;
     unsigned int tail;
-    int *buffer;
+    std::unique_ptr<T[]> buffer;
     unsigned int currSize;
     unsigned int maxSize;
 
     void resize()
     {
-        int *newBuffer = new int[maxSize * 2];
+        auto newBuffer = std::make_unique<T[]>(maxSize * 2);
         for (int i = 0; i < currSize; i++)
         {
             newBuffer[i] = buffer[tail];
             tail = (tail + 1) % maxSize;
         }
-        delete[] buffer;
-        buffer = newBuffer;
+        buffer = std::move(newBuffer);
         tail = 0;
         head = maxSize;
         maxSize *= 2;
