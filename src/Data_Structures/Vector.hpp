@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 #include <memory>
 #include <optional>
@@ -8,46 +9,57 @@ namespace dataStructures
 template <typename T> class Vector
 {
   public:
-    Vector() { allocateMem(2); }
-
-    void Push_Back(T item)
-    {
-        if (currSize == capacity)
-        {
-            allocateMem(capacity + capacity / 2);
-        }
-        data[currSize] = item;
-        currSize++;
-    }
+    Vector() { reallocate(2); }
 
     std::optional<T> operator[](unsigned int index)
     {
-        if (index >= currSize)
+        if (index < 0 || index >= currSize)
         {
             return std::nullopt;
         }
         return data[index];
     }
 
-    unsigned int Size() { return currSize; }
+    void Push_Back(T item)
+    {
+        if (currSize == capacity)
+        {
+            reallocate(capacity + capacity / 2);
+        }
+        data[currSize] = item;
+        currSize++;
+    }
 
-    unsigned int getCapacity() { return capacity; }
+    std::optional<T> Pop_Back()
+    {
+        if (currSize == 0)
+        {
+            // std::cout << "No items in vector\n";
+            return std::nullopt;
+        }
+        T ret = data[currSize - 1];
+        currSize--;
+        return ret;
+    }
+
+    size_t Size() { return currSize; }
+
+    size_t getCapacity() { return capacity; }
 
   private:
-    void allocateMem(unsigned int newCapacity)
+    void reallocate(size_t newSize)
     {
-        std::cout << "Allocating memory " << newCapacity << "\n";
-        auto newData = std::make_unique<T[]>(newCapacity);
-        for (int i = 0; i < capacity; i++)
+        auto newData = std::make_unique<T[]>(newSize);
+        for (size_t i = 0; i < currSize; i++)
         {
-            newData[i] = data[i];
+            newData[i] = std::move(data[i]);
         }
         data = std::move(newData);
-        capacity = newCapacity;
+        capacity = newSize;
     }
 
     std::unique_ptr<T[]> data;
-    unsigned int currSize = 0;
-    unsigned int capacity = 0;
+    size_t currSize = 0;
+    size_t capacity = 0;
 };
 } // namespace dataStructures
