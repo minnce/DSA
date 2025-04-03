@@ -12,7 +12,7 @@ template <typename T> class Vector
   public:
     Vector() { reallocate(2); }
 
-    T& operator[](unsigned int index)
+    T &operator[](unsigned int index)
     {
         if (index < 0 || index >= currSize)
         {

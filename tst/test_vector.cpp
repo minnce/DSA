@@ -1,8 +1,8 @@
 #include <Data_Structures/Vector.hpp>
 #include <gtest/gtest.h>
 #include <optional>
-#include <string>
 #include <stdexcept>
+#include <string>
 
 using namespace dataStructures;
 
