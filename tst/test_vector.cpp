@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 #include <optional>
 #include <string>
+#include <stdexcept>
 
 using namespace dataStructures;
 
@@ -18,17 +19,19 @@ TEST(VectorTest, InitializeTest)
     auto v = Vector<int>();
     ASSERT_EQ(v.Size(), 0);
     ASSERT_EQ(v.getCapacity(), 2);
-    ASSERT_EQ(v[0], std::nullopt);
+    ASSERT_THROW(v[0], std::out_of_range);
     v.Push_Back(1);
     ASSERT_EQ(v[0], 1);
-    ASSERT_EQ(v[1], std::nullopt);
-    ASSERT_EQ(v[2], std::nullopt);
+    ASSERT_THROW(v[1], std::out_of_range);
+    ASSERT_THROW(v[2], std::out_of_range);
+    v[0] = 10;
+    ASSERT_EQ(v[0], 10);
 }
 
 TEST(VectorTest, PopTest)
 {
     auto v = Vector<int>();
-    ASSERT_EQ(v.Pop_Back(), std::nullopt);
+    ASSERT_THROW(v.Pop_Back(), std::out_of_range);
     v.Push_Back(1);
     ASSERT_EQ(1, v.Pop_Back());
     ASSERT_EQ(v.Size(), 0);
@@ -68,7 +71,7 @@ TEST(VectorTest, ResizeAndAccessBeyondInitialCapacity)
         ASSERT_EQ(v[i], i);
     }
 
-    ASSERT_EQ(v[10], std::nullopt);
+    ASSERT_THROW(v[10], std::out_of_range);
 }
 
 TEST(VectorTest, MultiplePops)
@@ -81,7 +84,7 @@ TEST(VectorTest, MultiplePops)
     ASSERT_EQ(v.Pop_Back(), 15);
     ASSERT_EQ(v.Pop_Back(), 10);
     ASSERT_EQ(v.Pop_Back(), 5);
-    ASSERT_EQ(v.Pop_Back(), std::nullopt);
+    ASSERT_THROW(v.Pop_Back(), std::out_of_range);
 }
 
 TEST(VectorTest, CustomStructTest)

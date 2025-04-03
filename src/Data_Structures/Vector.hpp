@@ -3,6 +3,7 @@
 #include <iostream>
 #include <memory>
 #include <optional>
+#include <stdexcept>
 
 namespace dataStructures
 {
@@ -11,11 +12,11 @@ template <typename T> class Vector
   public:
     Vector() { reallocate(2); }
 
-    std::optional<T> operator[](unsigned int index)
+    T& operator[](unsigned int index)
     {
         if (index < 0 || index >= currSize)
         {
-            return std::nullopt;
+            throw std::out_of_range("Index out of bounds.");
         }
         return data[index];
     }
@@ -35,7 +36,7 @@ template <typename T> class Vector
         if (currSize == 0)
         {
             // std::cout << "No items in vector\n";
-            return std::nullopt;
+            throw std::out_of_range("No items.");
         }
         T ret = data[currSize - 1];
         currSize--;

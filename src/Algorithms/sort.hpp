@@ -1,4 +1,7 @@
 #pragma once
 #include <concepts>
 
-template <std::sortable t> namespace algorithms {}
+namespace algorithms {
+    template<std::sortable T>
+    
+}
