@@ -21,6 +21,15 @@ template <typename T> class Vector
         return data[index];
     }
 
+    const T &operator[](unsigned int index) const
+    {
+        if (index < 0 || index >= currSize)
+        {
+            throw std::out_of_range("Index out of bounds.");
+        }
+        return data[index];
+    }
+
     void Push_Back(T item)
     {
         if (currSize == capacity)
