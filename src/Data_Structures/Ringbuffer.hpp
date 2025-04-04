@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <memory>
-#include <optional>
+#include <stdexcept>
 #include <vector>
 
 namespace dataStructures
@@ -29,13 +29,13 @@ template <typename T> class Ringbuffer
         currSize++;
     }
 
-    std::optional<T> get_item()
+    const T &get_item()
     {
         if (currSize == 0)
         {
-            return std::nullopt;
+            throw std::out_of_range("No items to get.");
         }
-        T toRet = buffer[tail];
+        T &toRet = buffer[tail];
         tail = (tail + 1) % maxSize;
         currSize--;
         return toRet;
@@ -51,6 +51,12 @@ template <typename T> class Ringbuffer
         }
         std::cout << "\n";
     }
+
+    const T get_head() const { return head; }
+
+    const T get_tail() const { return tail; }
+
+    const T get_size() const { return currSize; }
 
   private:
     unsigned int head;

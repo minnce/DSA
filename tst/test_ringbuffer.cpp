@@ -1,14 +1,14 @@
 #include <Data_Structures/Ringbuffer.hpp>
 #include <gtest/gtest.h>
-#include <optional>
+#include <stdexcept>
 #include <string>
 
 using namespace dataStructures;
 
 TEST(RingbufferTest, EmptyGetReturnsNullopt)
 {
-    Ringbuffer<int> ring(4);
-    ASSERT_EQ(ring.get_item(), std::nullopt);
+    auto ring = Ringbuffer<int>(4);
+    EXPECT_THROW(ring.get_item(), std::out_of_range);
 }
 
 TEST(RingbufferTest, BasicPushPop)
@@ -19,7 +19,7 @@ TEST(RingbufferTest, BasicPushPop)
 
     EXPECT_EQ(ring.get_item(), 10);
     EXPECT_EQ(ring.get_item(), 20);
-    EXPECT_EQ(ring.get_item(), std::nullopt);
+    EXPECT_THROW(ring.get_item(), std::out_of_range);
 }
 
 TEST(RingbufferTest, Wraparound)
@@ -35,7 +35,7 @@ TEST(RingbufferTest, Wraparound)
     EXPECT_EQ(ring.get_item(), 2);
     EXPECT_EQ(ring.get_item(), 3);
     EXPECT_EQ(ring.get_item(), 4);
-    EXPECT_EQ(ring.get_item(), std::nullopt);
+    EXPECT_THROW(ring.get_item(), std::out_of_range);
 }
 
 TEST(RingbufferTest, ResizePreservesOrder)
@@ -48,7 +48,7 @@ TEST(RingbufferTest, ResizePreservesOrder)
     EXPECT_EQ(ring.get_item(), 100);
     EXPECT_EQ(ring.get_item(), 200);
     EXPECT_EQ(ring.get_item(), 300);
-    EXPECT_EQ(ring.get_item(), std::nullopt);
+    EXPECT_THROW(ring.get_item(), std::out_of_range);
 }
 
 TEST(RingbufferTest, AddAfterReads)
@@ -79,7 +79,7 @@ TEST(RingbufferTest, StringSupport)
 
     EXPECT_EQ(ring.get_item(), "bar");
     EXPECT_EQ(ring.get_item(), "baz");
-    EXPECT_EQ(ring.get_item(), std::nullopt);
+    EXPECT_THROW(ring.get_item(), std::out_of_range);
 }
 
 TEST(RingbufferTest, StressTest)
@@ -92,5 +92,5 @@ TEST(RingbufferTest, StressTest)
     for (int i = 0; i < N; ++i)
         ASSERT_EQ(ring.get_item(), i);
 
-    ASSERT_EQ(ring.get_item(), std::nullopt);
+    EXPECT_THROW(ring.get_item(), std::out_of_range);
 }
