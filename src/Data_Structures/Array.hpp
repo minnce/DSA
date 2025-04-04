@@ -24,6 +24,15 @@ template <typename T> class Array
         return data[index];
     }
 
+    const T &operator[](size_t index) const
+    {
+        if (index >= Size)
+        {
+            throw std::out_of_range("Index out of bounds");
+        }
+        return data[index];
+    }
+
   private:
     std::unique_ptr<T[]> data;
     size_t Size;
