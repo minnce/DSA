@@ -1,6 +1,5 @@
 #include <Data_Structures/Vector.hpp>
 #include <gtest/gtest.h>
-#include <optional>
 #include <stdexcept>
 #include <string>
 
@@ -94,12 +93,10 @@ TEST(VectorTest, CustomStructTest)
     people.Push_Back({"Bob", 25});
 
     auto p1 = people.Pop_Back();
-    ASSERT_TRUE(p1.has_value());
-    ASSERT_EQ(p1.value(), Person("Bob", 25));
+    ASSERT_EQ(p1, Person("Bob", 25));
 
     auto p2 = people.Pop_Back();
-    ASSERT_TRUE(p2.has_value());
-    ASSERT_EQ(p2.value(), Person("Alice", 30));
+    ASSERT_EQ(p2, Person("Alice", 30));
 
     ASSERT_EQ(people.Size(), 0);
 }
