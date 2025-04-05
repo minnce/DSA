@@ -34,7 +34,7 @@ template <typename T> class LinkedList
             std::cout << printer->value << " ";
             printer = printer->next;
         }
-        std::cout << "print done!\n";
+        // std::cout << "print done!\n";
     }
 
     std::vector<T> convert_to_vector()

@@ -18,7 +18,7 @@ template <typename T> class Ringbuffer
         currSize = 0;
     }
 
-    void add_item(T item)
+    void Add_Item(T item)
     {
         if (currSize == maxSize)
         {
@@ -29,7 +29,7 @@ template <typename T> class Ringbuffer
         currSize++;
     }
 
-    const T &get_item()
+    const T &Get_Item()
     {
         if (currSize == 0)
         {
@@ -41,10 +41,10 @@ template <typename T> class Ringbuffer
         return toRet;
     }
 
-    void dump_buffer()
+    void Dump_Buffer()
     {
         int dumpTail = tail;
-        for (int i = 0; i < currSize; i++)
+        for (int i = 0; i < maxSize; i++)
         {
             std::cout << buffer[dumpTail] << " ";
             dumpTail = (dumpTail + 1) % maxSize;
@@ -52,11 +52,11 @@ template <typename T> class Ringbuffer
         std::cout << "\n";
     }
 
-    const T get_head() const { return head; }
+    const T Get_Head() const { return head; }
 
-    const T get_tail() const { return tail; }
+    const T Get_Tail() const { return tail; }
 
-    const T get_size() const { return currSize; }
+    const T Get_Size() const { return currSize; }
 
   private:
     unsigned int head;

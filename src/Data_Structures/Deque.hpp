@@ -5,10 +5,10 @@
 
 namespace dataStructures
 {
-template <typename T> class Queue
+template <typename T> class Deque
 {
   public:
-    Queue()
+    Deque()
     {
         buffer = std::make_unique<T[]>(4);
         head = 0;
@@ -21,7 +21,7 @@ template <typename T> class Queue
     {
         if (currSize == 0)
         {
-            throw std::out_of_range("No items in queue.");
+            throw std::out_of_range("No items in Deque.");
         }
         return buffer[tail];
     }
@@ -30,23 +30,48 @@ template <typename T> class Queue
     {
         if (currSize == 0)
         {
-            throw std::out_of_range("No items in queue.");
+            throw std::out_of_range("No items in Deque.");
         }
-        return buffer[(head + maxSize - 1) % maxSize];
+        return buffer[head];
     }
 
-    void Push(T item)
+    void Push_Back(T item)
     {
         if (currSize == maxSize)
         {
             resize();
         }
-        buffer[head] = item;
-        head = (head + 1) % maxSize;
+        if (currSize == 0)
+        {
+            buffer[head] = item;
+        }
+        else
+        {
+            head = (head + 1) % maxSize;
+            buffer[head] = item;
+        }
         currSize++;
     }
 
-    const T &Pop()
+    void Push_Front(T item)
+    {
+        if (currSize == maxSize)
+        {
+            resize();
+        }
+        if (currSize == 0)
+        {
+            buffer[tail] = item;
+        }
+        else
+        {
+            tail = (tail - 1 + maxSize) % maxSize;
+            buffer[tail] = item;
+        }
+        currSize++;
+    }
+
+    const T &Pop_Front()
     {
         if (currSize == 0)
         {
@@ -54,6 +79,18 @@ template <typename T> class Queue
         }
         T &toRet = buffer[tail];
         tail = (tail + 1) % maxSize;
+        currSize--;
+        return toRet;
+    }
+
+    const T &Pop_Back()
+    {
+        if (currSize == 0)
+        {
+            throw std::out_of_range("No items to get.");
+        }
+        T &toRet = buffer[head];
+        head = (head + maxSize - 1) % maxSize;
         currSize--;
         return toRet;
     }
@@ -82,6 +119,15 @@ template <typename T> class Queue
 
     const size_t Size() const { return currSize; }
 
+    const T &operator[](size_t index) const
+    {
+        if (index < 0 || index >= currSize)
+        {
+            throw std::out_of_range("Index not in range.");
+        }
+        return buffer[(tail + index) % maxSize];
+    }
+
   private:
     unsigned int head;
     unsigned int tail;
@@ -99,7 +145,7 @@ template <typename T> class Queue
         }
         buffer = std::move(newBuffer);
         tail = 0;
-        head = maxSize;
+        head = maxSize - 1;
         maxSize *= 2;
     }
 };
