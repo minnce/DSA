@@ -52,12 +52,6 @@ template <typename T> class Ringbuffer
         std::cout << "\n";
     }
 
-    const T Get_Head() const { return head; }
-
-    const T Get_Tail() const { return tail; }
-
-    const T Get_Size() const { return currSize; }
-
   private:
     unsigned int head;
     unsigned int tail;
