@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <memory>
-#include <optional>
 #include <stdexcept>
 
 namespace dataStructures
@@ -40,14 +39,14 @@ template <typename T> class Vector
         currSize++;
     }
 
-    std::optional<T> Pop_Back()
+    const T &Pop_Back()
     {
         if (currSize == 0)
         {
             // std::cout << "No items in vector\n";
             throw std::out_of_range("No items.");
         }
-        T ret = data[currSize - 1];
+        T &ret = data[currSize - 1];
         currSize--;
         return ret;
     }

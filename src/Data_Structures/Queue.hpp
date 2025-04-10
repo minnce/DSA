@@ -2,23 +2,40 @@
 #include <iostream>
 #include <memory>
 #include <stdexcept>
-#include <vector>
 
 namespace dataStructures
 {
-template <typename T> class Ringbuffer
+template <typename T> class Queue
 {
   public:
-    Ringbuffer(unsigned int initSize)
+    Queue()
     {
-        buffer = std::make_unique<T[]>(initSize);
+        buffer = std::make_unique<T[]>(4);
         head = 0;
         tail = 0;
-        maxSize = initSize;
+        maxSize = 4;
         currSize = 0;
     }
 
-    void Add_Item(T item)
+    T &Front()
+    {
+        if (currSize == 0)
+        {
+            throw std::out_of_range("No items in queue.");
+        }
+        return buffer[tail];
+    }
+
+    T &Back()
+    {
+        if (currSize == 0)
+        {
+            throw std::out_of_range("No items in queue.");
+        }
+        return buffer[(head + maxSize - 1) % maxSize];
+    }
+
+    void Push(T item)
     {
         if (currSize == maxSize)
         {
@@ -29,7 +46,7 @@ template <typename T> class Ringbuffer
         currSize++;
     }
 
-    const T &Get_Item()
+    const T &Pop()
     {
         if (currSize == 0)
         {
@@ -44,13 +61,26 @@ template <typename T> class Ringbuffer
     void Dump_Buffer()
     {
         int dumpTail = tail;
-        for (int i = 0; i < maxSize; i++)
+        for (int i = 0; i < currSize; i++)
         {
             std::cout << buffer[dumpTail] << " ";
             dumpTail = (dumpTail + 1) % maxSize;
         }
         std::cout << "\n";
     }
+
+    void Dump_Buffer_Raw()
+    {
+        for (int i = 0; i < maxSize; i++)
+        {
+            std::cout << buffer[i] << " ";
+        }
+        std::cout << "\n";
+    }
+
+    const bool Empty() const { return currSize == 0; }
+
+    const size_t Size() const { return currSize; }
 
   private:
     unsigned int head;

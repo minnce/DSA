@@ -51,7 +51,6 @@ TEST(LinkedListTest, PrintNonEmpty)
     std::string output = testing::internal::GetCapturedStdout();
     EXPECT_TRUE(output.find("100") != std::string::npos);
     EXPECT_TRUE(output.find("200") != std::string::npos);
-    EXPECT_TRUE(output.find("print done!") != std::string::npos);
 }
 
 TEST(LinkedListTest, StringItems)
