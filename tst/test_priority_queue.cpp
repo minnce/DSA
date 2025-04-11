@@ -1,19 +1,19 @@
-#include <gtest/gtest.h>
 #include <Data_Structures/Priority_Queue.hpp>
+#include <gtest/gtest.h>
 #include <stdexcept>
-#include <vector>
-#include <algorithm>
 
 using namespace dataStructures;
 
-TEST(PriorityTest, InitializeEmpty) {
+TEST(PriorityTest, InitializeEmpty)
+{
     PriorityQueue<int> pq;
     ASSERT_EQ(pq.Size(), 0);
     ASSERT_TRUE(pq.Empty());
     ASSERT_THROW(pq.Pop(), std::out_of_range);
 }
 
-TEST(PriorityTest, PushPopSingle) {
+TEST(PriorityTest, PushPopSingle)
+{
     PriorityQueue<int> pq;
     pq.Push(42);
     ASSERT_EQ(pq.Size(), 1);
@@ -21,7 +21,8 @@ TEST(PriorityTest, PushPopSingle) {
     ASSERT_TRUE(pq.Empty());
 }
 
-TEST(PriorityTest, PushMultipleMaintainsOrder) {
+TEST(PriorityTest, PushMultipleMaintainsOrder)
+{
     PriorityQueue<int> pq;
     pq.Push(10);
     pq.Push(50);
@@ -38,7 +39,8 @@ TEST(PriorityTest, PushMultipleMaintainsOrder) {
     ASSERT_TRUE(pq.Empty());
 }
 
-TEST(PriorityTest, HandlesDuplicatesCorrectly) {
+TEST(PriorityTest, HandlesDuplicatesCorrectly)
+{
     PriorityQueue<int> pq;
     pq.Push(5);
     pq.Push(5);
@@ -51,7 +53,8 @@ TEST(PriorityTest, HandlesDuplicatesCorrectly) {
     ASSERT_TRUE(pq.Empty());
 }
 
-TEST(PriorityTest, HandlesNegativeNumbers) {
+TEST(PriorityTest, HandlesNegativeNumbers)
+{
     PriorityQueue<int> pq;
     pq.Push(-10);
     pq.Push(0);
@@ -80,7 +83,8 @@ TEST(PriorityTest, HandlesNegativeNumbers) {
 //     ASSERT_TRUE(pq.Empty());
 // }
 
-TEST(PriorityTest, InterleavedPushPopOperations) {
+TEST(PriorityTest, InterleavedPushPopOperations)
+{
     PriorityQueue<int> pq;
     pq.Push(10);
     pq.Push(20);
