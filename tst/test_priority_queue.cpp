@@ -68,20 +68,20 @@ TEST(PriorityTest, HandlesNegativeNumbers)
     ASSERT_TRUE(pq.Empty());
 }
 
-// TEST(PriorityTest, StressTestLargeNumberOfElements) {
-//     PriorityQueue<int> pq;
-//     int N = 1000;
+TEST(PriorityTest, StressTestLargeNumberOfElements) {
+    PriorityQueue<int> pq;
+    int N = 1000;
 
-//     for (int i = 0; i < N; ++i) {
-//         pq.Push(i);
-//     }
-//     ASSERT_EQ(pq.Size(), N);
+    for (int i = 0; i < N; ++i) {
+        pq.Push(i);
+    }
+    ASSERT_EQ(pq.Size(), N);
 
-//     for (int i = N - 1; i >= 0; --i) {
-//         ASSERT_EQ(pq.Pop(), i);
-//     }
-//     ASSERT_TRUE(pq.Empty());
-// }
+    for (int i = N - 1; i >= 0; --i) {
+        ASSERT_EQ(pq.Pop(), i);
+    }
+    ASSERT_TRUE(pq.Empty());
+}
 
 TEST(PriorityTest, InterleavedPushPopOperations)
 {
