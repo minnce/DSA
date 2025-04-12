@@ -5,8 +5,7 @@
 
 namespace mystd
 {
-template <typename T>
-class queue
+template <typename T> class queue
 {
   public:
     queue()

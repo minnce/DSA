@@ -7,8 +7,7 @@
 
 namespace mystd
 {
-template <typename T>
-class stack
+template <typename T> class stack
 {
   public:
     stack() { data = vector<T>(); }

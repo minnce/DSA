@@ -6,8 +6,7 @@
 
 namespace mystd
 {
-template <typename T>
-class ringbuffer
+template <typename T> class ringbuffer
 {
   public:
     ringbuffer(unsigned int initSize)

@@ -6,8 +6,7 @@
 
 namespace mystd
 {
-template <typename T>
-class array
+template <typename T> class array
 {
   public:
     array(size_t initSize)
