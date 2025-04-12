@@ -4,12 +4,12 @@
 #include <memory>
 #include <stdexcept>
 
-namespace dataStructures
+namespace mystd
 {
-template <typename T> class Vector
+template <typename T> class vector
 {
   public:
-    Vector() { reallocate(2); }
+    vector() { reallocate(2); }
 
     T &operator[](unsigned int index)
     {
@@ -29,7 +29,7 @@ template <typename T> class Vector
         return data[index];
     }
 
-    void Push_Back(T item)
+    void push_back(T item)
     {
         if (currSize == capacity)
         {
@@ -39,7 +39,7 @@ template <typename T> class Vector
         currSize++;
     }
 
-    const T &Pop_Back()
+    const T &pop_back()
     {
         if (currSize == 0)
         {
@@ -51,9 +51,7 @@ template <typename T> class Vector
         return ret;
     }
 
-    size_t Size() { return currSize; }
-
-    size_t getCapacity() { return capacity; }
+    size_t size() { return currSize; }
 
   private:
     void reallocate(size_t newSize)
@@ -71,4 +69,4 @@ template <typename T> class Vector
     size_t currSize = 0;
     size_t capacity = 0;
 };
-} // namespace dataStructures
+} // namespace mystd

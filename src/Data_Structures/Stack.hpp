@@ -5,31 +5,31 @@
 #include <optional>
 #include <stdexcept>
 
-namespace dataStructures
+namespace mystd
 {
-template <typename T> class Stack
+template <typename T> class stack
 {
   public:
-    Stack() { data = Vector<T>(); }
+    stack() { data = vector<T>(); }
 
-    void Push(T item) { data.Push_Back(item); }
+    void push(T item) { data.push_back(item); }
 
-    const T &Pop() { return data.Pop_Back(); }
+    const T &pop() { return data.pop_back(); }
 
-    T &Top()
+    T &top()
     {
-        if (data.Size() == 0)
+        if (data.size() == 0)
         {
             throw std::out_of_range("No items in stack.");
         }
         return data[0];
     }
 
-    bool Empty() { return data.Size() == 0; }
+    bool empty() { return data.size() == 0; }
 
-    size_t Size() { return data.Size(); }
+    size_t size() { return data.size(); }
 
   private:
-    Vector<T> data;
+    vector<T> data;
 };
-} // namespace dataStructures
+} // namespace mystd

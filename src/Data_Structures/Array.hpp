@@ -4,12 +4,12 @@
 #include <memory>
 #include <optional>
 
-namespace dataStructures
+namespace mystd
 {
-template <typename T> class Array
+template <typename T> class array
 {
   public:
-    Array(size_t initSize)
+    array(size_t initSize)
     {
         Size = initSize;
         data = std::make_unique<T[]>(initSize);
@@ -37,4 +37,4 @@ template <typename T> class Array
     std::unique_ptr<T[]> data;
     size_t Size;
 };
-} // namespace dataStructures
+} // namespace mystd

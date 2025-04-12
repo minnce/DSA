@@ -2,105 +2,105 @@
 #include <gtest/gtest.h>
 #include <stdexcept>
 
-using namespace dataStructures;
+using namespace mystd;
 
 TEST(QueueTest, BasicInitializeTest)
 {
-    auto q = Queue<int>();
-    q.Push(2);
-    ASSERT_EQ(q.Size(), 1);
-    ASSERT_FALSE(q.Empty());
-    ASSERT_EQ(q.Pop(), 2);
-    ASSERT_THROW(q.Pop(), std::out_of_range);
-    ASSERT_TRUE(q.Empty());
-    ASSERT_EQ(q.Size(), 0);
+    auto q = queue<int>();
+    q.push(2);
+    ASSERT_EQ(q.size(), 1);
+    ASSERT_FALSE(q.empty());
+    ASSERT_EQ(q.pop(), 2);
+    ASSERT_THROW(q.pop(), std::out_of_range);
+    ASSERT_TRUE(q.empty());
+    ASSERT_EQ(q.size(), 0);
 }
 
 TEST(QueueTest, PushAndPopMultipleItems)
 {
-    Queue<int> q;
-    q.Push(1);
-    q.Push(2);
-    q.Push(3);
+    queue<int> q;
+    q.push(1);
+    q.push(2);
+    q.push(3);
 
-    ASSERT_EQ(q.Size(), 3);
-    ASSERT_EQ(q.Pop(), 1);
-    ASSERT_EQ(q.Pop(), 2);
-    ASSERT_EQ(q.Pop(), 3);
-    ASSERT_TRUE(q.Empty());
+    ASSERT_EQ(q.size(), 3);
+    ASSERT_EQ(q.pop(), 1);
+    ASSERT_EQ(q.pop(), 2);
+    ASSERT_EQ(q.pop(), 3);
+    ASSERT_TRUE(q.empty());
 }
 
 TEST(QueueTest, FrontAndBackTest)
 {
-    Queue<int> q;
-    q.Push(10);
-    q.Push(20);
-    q.Push(30);
+    queue<int> q;
+    q.push(10);
+    q.push(20);
+    q.push(30);
 
-    ASSERT_EQ(q.Front(), 10);
-    ASSERT_EQ(q.Back(), 30);
+    ASSERT_EQ(q.front(), 10);
+    ASSERT_EQ(q.back(), 30);
 
-    q.Pop();
-    ASSERT_EQ(q.Front(), 20);
-    ASSERT_EQ(q.Back(), 30);
+    q.pop();
+    ASSERT_EQ(q.front(), 20);
+    ASSERT_EQ(q.back(), 30);
 }
 
 TEST(QueueTest, PopFromEmptyQueueThrows)
 {
-    Queue<int> q;
-    ASSERT_THROW(q.Pop(), std::out_of_range);
+    queue<int> q;
+    ASSERT_THROW(q.pop(), std::out_of_range);
 
-    q.Push(5);
-    q.Pop();
-    ASSERT_THROW(q.Pop(), std::out_of_range);
+    q.push(5);
+    q.pop();
+    ASSERT_THROW(q.pop(), std::out_of_range);
 }
 
 TEST(QueueTest, FrontOnEmptyQueueThrows)
 {
-    Queue<int> q;
-    ASSERT_THROW(q.Front(), std::out_of_range);
+    queue<int> q;
+    ASSERT_THROW(q.front(), std::out_of_range);
 
-    q.Push(42);
-    q.Pop();
-    ASSERT_THROW(q.Front(), std::out_of_range);
+    q.push(42);
+    q.pop();
+    ASSERT_THROW(q.front(), std::out_of_range);
 }
 
 TEST(QueueTest, BackOnEmptyQueueThrows)
 {
-    Queue<int> q;
-    ASSERT_THROW(q.Back(), std::out_of_range);
+    queue<int> q;
+    ASSERT_THROW(q.back(), std::out_of_range);
 
-    q.Push(100);
-    q.Pop();
-    ASSERT_THROW(q.Back(), std::out_of_range);
+    q.push(100);
+    q.pop();
+    ASSERT_THROW(q.back(), std::out_of_range);
 }
 
 TEST(QueueTest, SizeConsistencyTest)
 {
-    Queue<int> q;
-    ASSERT_EQ(q.Size(), 0);
+    queue<int> q;
+    ASSERT_EQ(q.size(), 0);
 
     for (int i = 0; i < 5; ++i)
     {
-        q.Push(i);
-        ASSERT_EQ(q.Size(), i + 1);
+        q.push(i);
+        ASSERT_EQ(q.size(), i + 1);
     }
 
     for (int i = 5; i > 0; --i)
     {
-        q.Pop();
-        ASSERT_EQ(q.Size(), i - 1);
+        q.pop();
+        ASSERT_EQ(q.size(), i - 1);
     }
 }
 
 TEST(QueueTest, EmptyCheck)
 {
-    Queue<int> q;
-    ASSERT_TRUE(q.Empty());
+    queue<int> q;
+    ASSERT_TRUE(q.empty());
 
-    q.Push(123);
-    ASSERT_FALSE(q.Empty());
+    q.push(123);
+    ASSERT_FALSE(q.empty());
 
-    q.Pop();
-    ASSERT_TRUE(q.Empty());
+    q.pop();
+    ASSERT_TRUE(q.empty());
 }
