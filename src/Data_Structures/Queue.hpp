@@ -5,7 +5,8 @@
 
 namespace dataStructures
 {
-template <typename T> class Queue
+template <typename T>
+class Queue
 {
   public:
     Queue()

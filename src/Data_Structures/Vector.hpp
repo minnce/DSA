@@ -6,7 +6,8 @@
 
 namespace dataStructures
 {
-template <typename T> class Vector
+template <typename T>
+class Vector
 {
   public:
     Vector() { reallocate(2); }

@@ -7,7 +7,8 @@
 
 namespace dataStructures
 {
-template <typename T> class Stack
+template <typename T>
+class Stack
 {
   public:
     Stack() { data = Vector<T>(); }

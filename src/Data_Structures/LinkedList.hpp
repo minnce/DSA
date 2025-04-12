@@ -5,7 +5,8 @@
 
 namespace dataStructures
 {
-template <typename T> class LinkedList
+template <typename T>
+class LinkedList
 {
   public:
     LinkedList()
