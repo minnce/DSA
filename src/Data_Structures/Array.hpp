@@ -6,7 +6,8 @@
 
 namespace dataStructures
 {
-template <typename T> class Array
+template <typename T>
+class Array
 {
   public:
     Array(size_t initSize)

@@ -6,7 +6,8 @@
 
 namespace dataStructures
 {
-template <typename T> class Ringbuffer
+template <typename T>
+class Ringbuffer
 {
   public:
     Ringbuffer(unsigned int initSize)

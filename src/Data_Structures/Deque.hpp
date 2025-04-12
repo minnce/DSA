@@ -5,7 +5,8 @@
 
 namespace dataStructures
 {
-template <typename T> class Deque
+template <typename T>
+class Deque
 {
   public:
     Deque()
