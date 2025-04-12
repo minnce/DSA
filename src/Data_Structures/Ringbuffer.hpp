@@ -4,13 +4,13 @@
 #include <stdexcept>
 #include <vector>
 
-namespace dataStructures
+namespace mystd
 {
 template <typename T>
-class Ringbuffer
+class ringbuffer
 {
   public:
-    Ringbuffer(unsigned int initSize)
+    ringbuffer(unsigned int initSize)
     {
         buffer = std::make_unique<T[]>(initSize);
         head = 0;
@@ -19,7 +19,7 @@ class Ringbuffer
         currSize = 0;
     }
 
-    void Add_Item(T item)
+    void add_item(T item)
     {
         if (currSize == maxSize)
         {
@@ -30,7 +30,7 @@ class Ringbuffer
         currSize++;
     }
 
-    const T &Get_Item()
+    const T &get_item()
     {
         if (currSize == 0)
         {
@@ -42,7 +42,7 @@ class Ringbuffer
         return toRet;
     }
 
-    void Dump_Buffer()
+    void dump_buffer()
     {
         int dumpTail = tail;
         for (int i = 0; i < maxSize; i++)
@@ -74,4 +74,4 @@ class Ringbuffer
         maxSize *= 2;
     }
 };
-} // namespace dataStructures
+} // namespace mystd

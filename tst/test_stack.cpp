@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <string>
 
-using namespace dataStructures;
+using namespace mystd;
 
 struct Dummy
 {
@@ -16,76 +16,76 @@ struct Dummy
 
 TEST(StackTest, BasicInitializeTest)
 {
-    auto s = Stack<int>();
-    ASSERT_EQ(s.Size(), 0);
-    ASSERT_TRUE(s.Empty());
-    s.Push(1);
-    s.Push(2);
-    s.Push(3);
-    s.Push(4);
-    ASSERT_FALSE(s.Empty());
-    ASSERT_EQ(s.Size(), 4);
-    ASSERT_EQ(s.Pop(), 4);
-    ASSERT_EQ(s.Pop(), 3);
-    ASSERT_EQ(s.Pop(), 2);
-    ASSERT_EQ(s.Size(), 1);
-    ASSERT_EQ(s.Pop(), 1);
-    ASSERT_EQ(s.Size(), 0);
-    ASSERT_TRUE(s.Empty());
+    auto s = stack<int>();
+    ASSERT_EQ(s.size(), 0);
+    ASSERT_TRUE(s.empty());
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    s.push(4);
+    ASSERT_FALSE(s.empty());
+    ASSERT_EQ(s.size(), 4);
+    ASSERT_EQ(s.pop(), 4);
+    ASSERT_EQ(s.pop(), 3);
+    ASSERT_EQ(s.pop(), 2);
+    ASSERT_EQ(s.size(), 1);
+    ASSERT_EQ(s.pop(), 1);
+    ASSERT_EQ(s.size(), 0);
+    ASSERT_TRUE(s.empty());
 }
 
 TEST(StackTest, StressTest)
 {
-    Stack<int> s;
+    stack<int> s;
     for (int i = 0; i < 10000; ++i)
     {
-        s.Push(i);
+        s.push(i);
     }
-    ASSERT_EQ(s.Size(), 10000);
+    ASSERT_EQ(s.size(), 10000);
 
     for (int i = 9999; i >= 0; --i)
     {
-        ASSERT_EQ(s.Pop(), i);
+        ASSERT_EQ(s.pop(), i);
     }
-    ASSERT_TRUE(s.Empty());
+    ASSERT_TRUE(s.empty());
 }
 
 TEST(StackTest, PopFromEmptyStack)
 {
-    Stack<int> s;
-    ASSERT_TRUE(s.Empty());
-    EXPECT_THROW(s.Pop(), std::out_of_range);
+    stack<int> s;
+    ASSERT_TRUE(s.empty());
+    EXPECT_THROW(s.pop(), std::out_of_range);
 }
 
 TEST(StackTest, SingleElementTest)
 {
-    Stack<std::string> s;
-    s.Push("hello");
-    ASSERT_FALSE(s.Empty());
-    ASSERT_EQ(s.Size(), 1);
-    ASSERT_EQ(s.Pop(), "hello");
-    ASSERT_TRUE(s.Empty());
-    ASSERT_EQ(s.Size(), 0);
+    stack<std::string> s;
+    s.push("hello");
+    ASSERT_FALSE(s.empty());
+    ASSERT_EQ(s.size(), 1);
+    ASSERT_EQ(s.pop(), "hello");
+    ASSERT_TRUE(s.empty());
+    ASSERT_EQ(s.size(), 0);
 }
 
 TEST(StackTest, InterleavedPushPopTest)
 {
-    Stack<int> s;
-    s.Push(1);
-    s.Push(2);
-    ASSERT_EQ(s.Pop(), 2);
-    s.Push(3);
-    ASSERT_EQ(s.Pop(), 3);
-    ASSERT_EQ(s.Pop(), 1);
-    ASSERT_TRUE(s.Empty());
+    stack<int> s;
+    s.push(1);
+    s.push(2);
+    ASSERT_EQ(s.pop(), 2);
+    s.push(3);
+    ASSERT_EQ(s.pop(), 3);
+    ASSERT_EQ(s.pop(), 1);
+    ASSERT_TRUE(s.empty());
 }
 
 TEST(StackTest, ComplexObjectTest)
 {
-    Stack<Dummy> s;
-    s.Push(Dummy(10));
-    s.Push(Dummy(20));
-    ASSERT_EQ(s.Pop().x, 20);
-    ASSERT_EQ(s.Pop().x, 10);
-    ASSERT_TRUE(s.Empty());
+    stack<Dummy> s;
+    s.push(Dummy(10));
+    s.push(Dummy(20));
+    ASSERT_EQ(s.pop().x, 20);
+    ASSERT_EQ(s.pop().x, 10);
+    ASSERT_TRUE(s.empty());
 }

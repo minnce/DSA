@@ -3,13 +3,13 @@
 #include <memory>
 #include <stdexcept>
 
-namespace dataStructures
+namespace mystd
 {
 template <typename T>
-class Queue
+class queue
 {
   public:
-    Queue()
+    queue()
     {
         buffer = std::make_unique<T[]>(4);
         head = 0;
@@ -18,7 +18,7 @@ class Queue
         currSize = 0;
     }
 
-    T &Front()
+    T &front()
     {
         if (currSize == 0)
         {
@@ -27,7 +27,7 @@ class Queue
         return buffer[tail];
     }
 
-    T &Back()
+    T &back()
     {
         if (currSize == 0)
         {
@@ -36,7 +36,7 @@ class Queue
         return buffer[(head + maxSize - 1) % maxSize];
     }
 
-    void Push(T item)
+    void push(T item)
     {
         if (currSize == maxSize)
         {
@@ -47,7 +47,7 @@ class Queue
         currSize++;
     }
 
-    const T &Pop()
+    const T &pop()
     {
         if (currSize == 0)
         {
@@ -59,7 +59,7 @@ class Queue
         return toRet;
     }
 
-    void Dump_Buffer()
+    void dump_buffer()
     {
         int dumpTail = tail;
         for (int i = 0; i < currSize; i++)
@@ -70,7 +70,7 @@ class Queue
         std::cout << "\n";
     }
 
-    void Dump_Buffer_Raw()
+    void dump_buffer_raw()
     {
         for (int i = 0; i < maxSize; i++)
         {
@@ -79,9 +79,9 @@ class Queue
         std::cout << "\n";
     }
 
-    const bool Empty() const { return currSize == 0; }
+    const bool empty() const { return currSize == 0; }
 
-    const size_t Size() const { return currSize; }
+    const size_t size() const { return currSize; }
 
   private:
     unsigned int head;
@@ -104,4 +104,4 @@ class Queue
         maxSize *= 2;
     }
 };
-} // namespace dataStructures
+} // namespace mystd

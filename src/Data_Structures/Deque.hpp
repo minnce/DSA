@@ -1,24 +1,24 @@
 #pragma once
+#include <Data_Structures/Array.hpp>
 #include <iostream>
 #include <memory>
 #include <stdexcept>
 
-namespace dataStructures
+namespace mystd
 {
 template <typename T>
-class Deque
+class deque
 {
   public:
-    Deque()
+    deque() : buffer(4)
     {
-        buffer = std::make_unique<T[]>(4);
         head = 0;
         tail = 0;
         maxSize = 4;
         currSize = 0;
     }
 
-    T &Front()
+    T &front()
     {
         if (currSize == 0)
         {
@@ -27,7 +27,7 @@ class Deque
         return buffer[tail];
     }
 
-    T &Back()
+    T &back()
     {
         if (currSize == 0)
         {
@@ -36,7 +36,7 @@ class Deque
         return buffer[head];
     }
 
-    void Push_Back(T item)
+    void push_back(T item)
     {
         if (currSize == maxSize)
         {
@@ -54,7 +54,7 @@ class Deque
         currSize++;
     }
 
-    void Push_Front(T item)
+    void push_front(T item)
     {
         if (currSize == maxSize)
         {
@@ -72,7 +72,7 @@ class Deque
         currSize++;
     }
 
-    const T &Pop_Front()
+    const T &pop_front()
     {
         if (currSize == 0)
         {
@@ -84,7 +84,7 @@ class Deque
         return toRet;
     }
 
-    const T &Pop_Back()
+    const T &pop_back()
     {
         if (currSize == 0)
         {
@@ -96,7 +96,7 @@ class Deque
         return toRet;
     }
 
-    void Dump_Buffer()
+    void dump_buffer()
     {
         int dumpTail = tail;
         for (int i = 0; i < currSize; i++)
@@ -107,7 +107,7 @@ class Deque
         std::cout << "\n";
     }
 
-    void Dump_Buffer_Raw()
+    void dump_buffer_raw()
     {
         for (int i = 0; i < maxSize; i++)
         {
@@ -116,9 +116,9 @@ class Deque
         std::cout << "\n";
     }
 
-    const bool Empty() const { return currSize == 0; }
+    bool empty() const { return currSize == 0; }
 
-    const size_t Size() const { return currSize; }
+    size_t size() const { return currSize; }
 
     const T &operator[](size_t index) const
     {
@@ -130,15 +130,15 @@ class Deque
     }
 
   private:
-    unsigned int head;
-    unsigned int tail;
-    std::unique_ptr<T[]> buffer;
-    unsigned int currSize;
-    unsigned int maxSize;
+    size_t head;
+    size_t tail;
+    size_t currSize;
+    size_t maxSize;
+    array<T> buffer;
 
     void resize()
     {
-        auto newBuffer = std::make_unique<T[]>(maxSize * 2);
+        auto newBuffer = array<T>(maxSize * 2);
         for (int i = 0; i < currSize; i++)
         {
             newBuffer[i] = buffer[tail];
@@ -150,4 +150,4 @@ class Deque
         maxSize *= 2;
     }
 };
-} // namespace dataStructures
+} // namespace mystd

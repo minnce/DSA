@@ -3,13 +3,13 @@
 #include <memory>
 #include <vector>
 
-namespace dataStructures
+namespace mystd
 {
 template <typename T>
-class LinkedList
+class linked_list
 {
   public:
-    LinkedList()
+    linked_list()
     {
         head = std::make_shared<Node>(T{});
         tail = std::make_shared<Node>(T{});
@@ -63,4 +63,4 @@ class LinkedList
     std::shared_ptr<Node> head;
     std::shared_ptr<Node> tail;
 };
-} // namespace dataStructures
+} // namespace mystd

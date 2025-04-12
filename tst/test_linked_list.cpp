@@ -3,18 +3,18 @@
 #include <string>
 #include <vector>
 
-using namespace dataStructures;
+using namespace mystd;
 
 TEST(LinkedListTest, EmptyList)
 {
-    LinkedList<int> list;
+    linked_list<int> list;
     auto vec = list.convert_to_vector();
     EXPECT_TRUE(vec.empty());
 }
 
 TEST(LinkedListTest, SingleItem)
 {
-    LinkedList<int> list;
+    linked_list<int> list;
     list.add_item(42);
     auto vec = list.convert_to_vector();
     ASSERT_EQ(vec.size(), 1);
@@ -23,7 +23,7 @@ TEST(LinkedListTest, SingleItem)
 
 TEST(LinkedListTest, MultipleItems)
 {
-    LinkedList<int> list;
+    linked_list<int> list;
     list.add_item(1);
     list.add_item(2);
     list.add_item(3);
@@ -37,13 +37,13 @@ TEST(LinkedListTest, MultipleItems)
 
 TEST(LinkedListTest, PrintEmpty)
 {
-    LinkedList<int> list;
+    linked_list<int> list;
     EXPECT_NO_THROW(list.print_list());
 }
 
 TEST(LinkedListTest, PrintNonEmpty)
 {
-    LinkedList<int> list;
+    linked_list<int> list;
     list.add_item(100);
     list.add_item(200);
     testing::internal::CaptureStdout();
@@ -55,7 +55,7 @@ TEST(LinkedListTest, PrintNonEmpty)
 
 TEST(LinkedListTest, StringItems)
 {
-    LinkedList<std::string> list;
+    linked_list<std::string> list;
     list.add_item("hello");
     list.add_item("world");
 
@@ -67,7 +67,7 @@ TEST(LinkedListTest, StringItems)
 
 TEST(LinkedListTest, Duplicates)
 {
-    LinkedList<int> list;
+    linked_list<int> list;
     list.add_item(7);
     list.add_item(7);
     list.add_item(7);
@@ -81,7 +81,7 @@ TEST(LinkedListTest, Duplicates)
 
 TEST(LinkedListTest, StressTest)
 {
-    LinkedList<int> list;
+    linked_list<int> list;
     const int N = 1000;
     for (int i = 0; i < N; ++i)
         list.add_item(i);
