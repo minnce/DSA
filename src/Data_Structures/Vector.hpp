@@ -39,14 +39,14 @@ template <typename T> class vector
         currSize++;
     }
 
-    const T &pop_back()
+    T pop_back()
     {
         if (currSize == 0)
         {
             // std::cout << "No items in vector\n";
             throw std::out_of_range("No items.");
         }
-        T &ret = data[currSize - 1];
+        T ret = data[currSize - 1];
         currSize--;
         return ret;
     }

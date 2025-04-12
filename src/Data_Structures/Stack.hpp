@@ -14,7 +14,7 @@ template <typename T> class stack
 
     void push(T item) { data.push_back(item); }
 
-    const T &pop() { return data.pop_back(); }
+    T pop() { return data.pop_back(); }
 
     T &top()
     {

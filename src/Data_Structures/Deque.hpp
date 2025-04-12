@@ -71,7 +71,7 @@ template <typename T> class deque
         currSize++;
     }
 
-    const T &pop_front()
+    T pop_front()
     {
         if (currSize == 0)
         {
@@ -83,7 +83,7 @@ template <typename T> class deque
         return toRet;
     }
 
-    const T &pop_back()
+    T pop_back()
     {
         if (currSize == 0)
         {
