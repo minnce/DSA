@@ -4,18 +4,18 @@
 #include <memory>
 #include <stdexcept>
 
-namespace dataStructures
+namespace mystd
 {
-template <typename T> class PriorityQueue
+template <typename T> class priority_queue
 {
   public:
-    PriorityQueue()
+    priority_queue()
     {
         sz = 0;
         reallocate(4);
     }
 
-    void Push(T item)
+    void push(T item)
     {
         if (sz == maxSz)
         {
@@ -31,7 +31,7 @@ template <typename T> class PriorityQueue
         sz++;
     }
 
-    const T &Top() const
+    const T &top() const
     {
         if (sz == 0)
         {
@@ -40,7 +40,7 @@ template <typename T> class PriorityQueue
         return tree[0];
     }
 
-    T Pop()
+    T pop()
     {
         if (sz == 0)
         {
@@ -53,9 +53,9 @@ template <typename T> class PriorityQueue
         return toRet;
     }
 
-    bool Empty() const { return sz == 0; }
+    bool empty() const { return sz == 0; }
 
-    size_t Size() const { return sz; }
+    size_t size() const { return sz; }
 
   private:
     void refactor(size_t currInd)
@@ -89,4 +89,4 @@ template <typename T> class PriorityQueue
     size_t sz;
     size_t maxSz;
 };
-} // namespace dataStructures
+} // namespace mystd
