@@ -1,9 +1,9 @@
 #pragma once
+#include <Data_Structures/Array.hpp>
 #include <algorithm>
 #include <iostream>
 #include <memory>
 #include <stdexcept>
-#include <Data_Structures/Array.hpp>
 
 namespace mystd
 {
