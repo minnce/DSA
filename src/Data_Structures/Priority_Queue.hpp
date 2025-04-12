@@ -3,16 +3,17 @@
 #include <iostream>
 #include <memory>
 #include <stdexcept>
+#include <Data_Structures/Array.hpp>
 
 namespace mystd
 {
 template <typename T> class priority_queue
 {
   public:
-    priority_queue()
+    priority_queue() : tree(4)
     {
         sz = 0;
-        reallocate(4);
+        maxSz = 4;
     }
 
     void push(T item)
@@ -49,7 +50,7 @@ template <typename T> class priority_queue
         T toRet = tree[0];
         tree[0] = std::move(tree[sz - 1]);
         sz--;
-        refactor(0);
+        heapify(0);
         return toRet;
     }
 
@@ -58,10 +59,10 @@ template <typename T> class priority_queue
     size_t size() const { return sz; }
 
   private:
-    void refactor(size_t currInd)
+    void heapify(size_t currInd)
     {
-        size_t left = currInd * 2 + 1;
-        size_t right = currInd * 2 + 2;
+        const size_t left = currInd * 2 + 1;
+        const size_t right = currInd * 2 + 2;
         size_t newLargest = currInd;
         if (left < sz && tree[left] > tree[newLargest])
             newLargest = left;
@@ -70,13 +71,13 @@ template <typename T> class priority_queue
         if (newLargest != currInd)
         {
             std::swap(tree[currInd], tree[newLargest]);
-            refactor(newLargest);
+            heapify(newLargest);
         }
     }
 
     void reallocate(size_t newSize)
     {
-        std::unique_ptr<T[]> newTree = std::make_unique<T[]>(newSize);
+        array<T> newTree = array<T>(newSize);
         for (size_t i = 0; i < sz; i++)
         {
             newTree[i] = std::move(tree[i]);
@@ -85,7 +86,7 @@ template <typename T> class priority_queue
         maxSz = newSize;
     }
 
-    std::unique_ptr<T[]> tree;
+    array<T> tree;
     size_t sz;
     size_t maxSz;
 };

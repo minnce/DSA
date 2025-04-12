@@ -1,7 +1,7 @@
 #pragma once
 #include <concepts>
 
-namespace algorithms
+namespace mystd
 {
 template <std::sortable T>
 
