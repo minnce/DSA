@@ -62,7 +62,7 @@ template <typename T> class PriorityQueue
     {
         size_t left = currInd * 2 + 1;
         size_t right = currInd * 2 + 2;
-        T newLargest = currInd;
+        size_t newLargest = currInd;
         if (left < sz && tree[left] > tree[newLargest])
             newLargest = left;
         if (right < sz && tree[right] > tree[newLargest])
