@@ -5,8 +5,7 @@
 
 namespace mystd
 {
-template <typename T>
-class linked_list
+template <typename T> class linked_list
 {
   public:
     linked_list()

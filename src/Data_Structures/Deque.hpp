@@ -6,8 +6,7 @@
 
 namespace mystd
 {
-template <typename T>
-class deque
+template <typename T> class deque
 {
   public:
     deque() : buffer(4)

@@ -6,8 +6,7 @@
 
 namespace mystd
 {
-template <typename T>
-class vector
+template <typename T> class vector
 {
   public:
     vector() { reallocate(2); }
