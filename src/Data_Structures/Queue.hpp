@@ -46,7 +46,7 @@ template <typename T> class queue
         currSize++;
     }
 
-    const T &pop()
+    T pop()
     {
         if (currSize == 0)
         {

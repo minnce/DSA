@@ -29,7 +29,7 @@ template <typename T> class ringbuffer
         currSize++;
     }
 
-    const T &get_item()
+    T get_item()
     {
         if (currSize == 0)
         {
