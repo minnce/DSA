@@ -51,17 +51,23 @@ template <typename T> class vector
         return ret;
     }
 
+    void reserve(size_t amount)
+    {
+        reallocate(amount);
+    }
+
     size_t size() { return currSize; }
 
   private:
     void reallocate(size_t newSize)
     {
         auto newData = std::make_unique<T[]>(newSize);
-        for (size_t i = 0; i < currSize; i++)
+        for (size_t i = 0; i < std::min(currSize,newSize); i++)
         {
             newData[i] = std::move(data[i]);
         }
         data = std::move(newData);
+        currSize = std::min(newSize, currSize);
         capacity = newSize;
     }
 

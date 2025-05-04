@@ -9,13 +9,13 @@ namespace mystd
 template <typename T> class array
 {
   public:
-    array(size_t initSize)
+    array(const size_t &initSize)
     {
         Size = initSize;
         data = std::make_unique<T[]>(initSize);
     }
 
-    T &operator[](size_t index)
+    T &operator[](const size_t &index)
     {
         if (index >= Size)
         {
@@ -24,7 +24,7 @@ template <typename T> class array
         return data[index];
     }
 
-    const T &operator[](size_t index) const
+    const T &operator[](const size_t &index) const
     {
         if (index >= Size)
         {

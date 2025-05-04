@@ -16,7 +16,7 @@ template <typename T> class linked_list
         tail->prev = head;
     }
 
-    void add_item(T item)
+    void add_item(const T &item)
     {
         auto toAdd = std::make_shared<Node>(item);
         auto temp = tail->prev.lock();

@@ -1,3 +1,4 @@
+#include <Data_Structures/Pair.hpp>
 #include <Data_Structures/Vector.hpp>
 #include <gtest/gtest.h>
 #include <stdexcept>
@@ -126,4 +127,18 @@ TEST(VectorTest, AlternatingPushPop)
     ASSERT_EQ(v.size(), 2);
     ASSERT_EQ(v[0], "B");
     ASSERT_EQ(v[1], "D");
+}
+
+TEST(VectorTest, CustomPair)
+{
+    vector<pair<int, int>> v;
+    v.push_back(make_pair(1, 4));
+    EXPECT_NEAR(v.size(), 1, 1e-9);
+}
+
+TEST(VectorTest, Resize) {
+    vector<int> v;
+    for (int i = 0; i < 20; i++) v.push_back(i);
+    v.reserve(5);
+    EXPECT_NEAR(v.size(), 5, 1e-9);
 }

@@ -35,7 +35,7 @@ template <typename T> class deque
         return buffer[head];
     }
 
-    void push_back(T item)
+    void push_back(const T &item)
     {
         if (currSize == maxSize)
         {
@@ -53,7 +53,7 @@ template <typename T> class deque
         currSize++;
     }
 
-    void push_front(T item)
+    void push_front(const T &item)
     {
         if (currSize == maxSize)
         {

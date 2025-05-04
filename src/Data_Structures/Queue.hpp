@@ -35,7 +35,7 @@ template <typename T> class queue
         return buffer[(head + maxSize - 1) % maxSize];
     }
 
-    void push(T item)
+    void push(const T &item)
     {
         if (currSize == maxSize)
         {
