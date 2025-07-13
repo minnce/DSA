@@ -9,7 +9,7 @@ class Trie
   public:
     Trie() : root(std::make_shared<Node>(char())) {}
 
-    bool find(const std::string &toFind)
+    bool find(const std::string &toFind) const
     {
         auto currNode = root;
         for (int i = 0; i < toFind.size(); i++)
